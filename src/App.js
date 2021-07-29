@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import Form from './Components/Form';
+import { Router } from '@reach/router';
+import Result from './Components/Result'
+import React, { useState } from 'react';
+import Error from './Components/Error';
 import './App.css';
 
 function App() {
+  const [result, setResult] = useState([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form setResult={setResult} />
+      <Router>
+        <Result path="/:id" result={result} />
+        <Error path="/error" />
+      </Router>
     </div>
   );
 }
